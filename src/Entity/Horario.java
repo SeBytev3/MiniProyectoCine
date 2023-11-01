@@ -22,6 +22,12 @@ public class Horario {
     public void setDia(int dia) {
         this.dia = dia;
     }
+
+    public Horario(String hora, int dia) {
+        this.hora = hora;
+        this.dia = dia;
+    }
+    
     
     
 }

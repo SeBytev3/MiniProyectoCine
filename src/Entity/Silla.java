@@ -52,6 +52,14 @@ public class Silla {
     public void setDisponibilidad(boolean disponibilidad) {
         this.disponibilidad = disponibilidad;
     }
+
+    public Silla(String numero, String letra, long valor, Tipo tipo, boolean disponibilidad) {
+        this.numero = numero;
+        this.letra = letra;
+        this.valor = valor;
+        this.tipo = tipo;
+        this.disponibilidad = disponibilidad;
+    }
     
     
 

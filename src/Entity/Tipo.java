@@ -35,6 +35,11 @@ public class Tipo {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    public Tipo(int codigo, String tipo) {
+        this.codigo = codigo;
+        this.tipo = tipo;
+    }
     
     
 

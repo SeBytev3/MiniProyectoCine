@@ -33,5 +33,12 @@ public class Sala {
         this.sillas = sillas;
     }
 
+    public Sala(Tipo tipo, String numero, Silla[][] sillas) {
+        this.tipo = tipo;
+        this.numero = numero;
+        this.sillas = sillas;
+    }
+    
+    
     
 }

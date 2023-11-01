@@ -32,6 +32,12 @@ public class Cartelera {
     public void setPelicula(Pelicula pelicula) {
         this.pelicula = pelicula;
     }
+
+    public Cartelera(Horario horario, Sala sala, Pelicula pelicula) {
+        this.horario = horario;
+        this.sala = sala;
+        this.pelicula = pelicula;
+    }
     
     
 

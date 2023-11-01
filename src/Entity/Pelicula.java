@@ -42,6 +42,13 @@ public class Pelicula {
     public void setDuracion(long duracion) {
         this.duracion = duracion;
     }
+
+    public Pelicula(String nombre, String idioma, Tipo tipo, long duracion) {
+        this.nombre = nombre;
+        this.idioma = idioma;
+        this.tipo = tipo;
+        this.duracion = duracion;
+    }
     
     
 
