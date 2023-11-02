@@ -23,6 +23,8 @@ public class Tipo {
             this.tipo = "GENERAL";
         } else if (codigo == 4) {
             this.tipo = "PREFERENCIAL";
+        } else {
+            this.tipo = "No existe";
         }
     }
 

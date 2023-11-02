@@ -8,16 +8,13 @@ import Logic.Cine;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
- 
-
 public class Main {
-
 
     public static void main(String[] args) {
         Cine cine = new Cine();
- 
+
         boolean control = true;
-        
+
         while (control) {
             String[] opciones = {"Agregar Sala", "Agregar Pelicula", "Agregar Película a Sala", "Mostrar Salas", "Vender Boleto", "Salir"};
             int seleccion = JOptionPane.showOptionDialog(
@@ -31,29 +28,61 @@ public class Main {
                     opciones[0]
             );
 
- 
-
             switch (seleccion) {
                 case 0: // Agregar Sala
-                    String numeroSala = JOptionPane.showInputDialog("Ingrese el número de la sala: ");
-                    int tipo = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el número de la sala: "));
+                    String numeroSala = JOptionPane.showInputDialog("Ingrese el numero de la sala (1, 2 o 3): ");
+                    if (numeroSala == null) {
+                        break;
+                    }
+                    int tipo = 0;
+                    while (tipo < 1 || tipo > 2) {
+
+                        String stTipo = JOptionPane.showInputDialog("Ingrese el tipo de sala: \n 1: 3D | 2: 35mm");
+                        if (stTipo != null) {
+                            tipo = Integer.parseInt(stTipo);
+                        } else {
+                            break;
+                        }
+                    }
+
                     Sala s1 = new Sala(new Tipo(tipo), numeroSala, new Silla[8][12]);
                     cine.getSalas().add(s1);
                     JOptionPane.showMessageDialog(null, "Sala agregada exitosamente!");
                     break;
 
- 
-
                 case 1: // Agregar Película
                     String titulo = JOptionPane.showInputDialog("Ingrese el título de la película:");
+                    if (titulo == null) {
+                        break;
+                    }
+                    
                     String idioma = JOptionPane.showInputDialog("Ingrese idioma de la película:");
-                    int tipoPelicula = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tipo de película:"));
-                    int duracion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la duración de la película (en minutos):"));
-                    Pelicula p1 = new Pelicula(titulo, idioma, new Tipo(tipoPelicula), duracion);
+                    if (idioma == null) {
+                        break;
+                    }
+                    
+                    int tipoPeli = 0;
+                    while (tipoPeli < 1 || tipoPeli > 2) {
+                        String stTipoPeli = JOptionPane.showInputDialog("Ingrese el tipo de pelicula: \n 1: 3D | 2: 35mm");
+                        if (stTipoPeli != null) {
+                            tipoPeli = Integer.parseInt(stTipoPeli);
+                        } else {
+                            break;
+                        }
+                    }
+                    
+                    int duracion = 0;
+                    String stDuracion = JOptionPane.showInputDialog("Ingrese la duración de la película (en minutos):");
+                    if (stDuracion == null) {
+                        break;
+                    }
+                    duracion = Integer.parseInt(stDuracion);
+                    
+                    Pelicula p1 = new Pelicula(titulo, idioma, new Tipo(tipoPeli), duracion);
                     cine.getPeliculas().add(p1);
+                    JOptionPane.showMessageDialog(null, "Pelicula agregada exitosamente!");
                     break;
-                    
-                    
+
                 case 2: // Agregar Película a Sala
                     String numSala = JOptionPane.showInputDialog("Ingrese el número de la sala que desea seleccionar:");
                     Sala sala = null;
@@ -64,16 +93,16 @@ public class Main {
                         }
                     }
 
-                    if (sala != null){
+                    if (sala != null) {
                         String numPelicula = JOptionPane.showInputDialog(cine.mostrarListapeliculas() + "\n Ingrese el número de la pelicula a la que desea agregar a la sala:");
                         Pelicula p = cine.obtenerPelicula(Integer.parseInt(numPelicula));
 
-                        StringBuilder mensajeHora =new StringBuilder();
+                        StringBuilder mensajeHora = new StringBuilder();
                         mensajeHora.append("Horario 1: 14:00 hasta las 16:30\n");
                         mensajeHora.append("Horario 2: 16:30 hasta las 19:00\n");
                         mensajeHora.append("Horario 3: 19:00 hasta las 21:00\n");
 
-                        String hora = JOptionPane.showInputDialog("Ingrese el numero del horario de la película:\n"+mensajeHora.toString());
+                        String hora = JOptionPane.showInputDialog("Ingrese el numero del horario de la película:\n" + mensajeHora.toString());
                         int dia = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero del dia de la semana :"));
                         Horario h = new Horario(hora, dia);
                         Cartelera c = new Cartelera(h, sala, p);
