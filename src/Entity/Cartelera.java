@@ -8,6 +8,14 @@ public class Cartelera {
     private Sala sala;
     
     private Pelicula pelicula;
+    
+    
+    public Cartelera(Horario horario, Sala sala, Pelicula pelicula) {
+        this.horario = horario;
+        this.sala = sala;
+        this.pelicula = pelicula;
+    }
+    
 
     public Horario getHorario() {
         return horario;
@@ -33,12 +41,6 @@ public class Cartelera {
         this.pelicula = pelicula;
     }
 
-    public Cartelera(Horario horario, Sala sala, Pelicula pelicula) {
-        this.horario = horario;
-        this.sala = sala;
-        this.pelicula = pelicula;
-    }
-    
-    
+       
 
 }

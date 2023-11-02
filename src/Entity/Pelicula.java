@@ -10,6 +10,15 @@ public class Pelicula {
     private Tipo tipo;
     
     private long duracion;
+    
+    
+    public Pelicula(String nombre, String idioma, Tipo tipo, long duracion) {
+        this.nombre = nombre;
+        this.idioma = idioma;
+        this.tipo = tipo;
+        this.duracion = duracion;
+    }
+    
 
     public String getNombre() {
         return nombre;
@@ -43,13 +52,6 @@ public class Pelicula {
         this.duracion = duracion;
     }
 
-    public Pelicula(String nombre, String idioma, Tipo tipo, long duracion) {
-        this.nombre = nombre;
-        this.idioma = idioma;
-        this.tipo = tipo;
-        this.duracion = duracion;
-    }
-    
     
 
 }

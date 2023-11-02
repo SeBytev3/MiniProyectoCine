@@ -8,6 +8,14 @@ public class Sala {
     private String numero;
     
     private Silla[][] sillas;
+    
+    
+    public Sala(Tipo tipo, String numero, Silla[][] sillas) {
+        this.tipo = tipo;
+        this.numero = numero;
+        this.sillas = sillas;
+    }
+    
 
     public Tipo getTipo() {
         return tipo;
@@ -33,12 +41,5 @@ public class Sala {
         this.sillas = sillas;
     }
 
-    public Sala(Tipo tipo, String numero, Silla[][] sillas) {
-        this.tipo = tipo;
-        this.numero = numero;
-        this.sillas = sillas;
-    }
-    
-    
     
 }

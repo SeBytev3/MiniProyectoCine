@@ -7,6 +7,12 @@ public class Tipo {
     private String tipo;
     
     
+    public Tipo(int codigo, String tipo) {
+        this.codigo = codigo;
+        this.tipo = tipo;
+    }
+    
+    
     public Tipo(int codigo) {
         this.codigo = codigo;
         if (codigo == 1) {
@@ -36,11 +42,5 @@ public class Tipo {
         this.tipo = tipo;
     }
 
-    public Tipo(int codigo, String tipo) {
-        this.codigo = codigo;
-        this.tipo = tipo;
-    }
     
-    
-
 }
