@@ -5,10 +5,22 @@
  */
 import Entity.*;
 import Logic.Cine;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
 public class Main {
+    
+    /*
+    Icono: falta poner initComponents y setIconImage(getIconImage())
+    public Image getIconImage () {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Images/CinemaLogo.png"));
+
+        return retValue;
+    }
+    */
+
 
     public static void main(String[] args) {
         Cine cine = new Cine();
@@ -20,7 +32,7 @@ public class Main {
             int seleccion = JOptionPane.showOptionDialog(
                     null,
                     "Seleccione una opción",
-                    "Menú principal",
+                    "CinemaStar Menú principal",
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.INFORMATION_MESSAGE,
                     null,
