@@ -1,14 +1,10 @@
 package Entity;
 
 public class Sala {
-    
-    
+
     private Tipo tipo;
-    
     private String numero;
-    
     private Silla[][] sillas;
-    
     
     public Sala(Tipo tipo, String numero, Silla[][] sillas) {
         this.tipo = tipo;

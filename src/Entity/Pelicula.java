@@ -1,16 +1,11 @@
 package Entity;
 
 public class Pelicula {
-    
-    
+
     private String nombre;
-    
     private String idioma;
-    
     private Tipo tipo;
-    
     private long duracion;
-    
     
     public Pelicula(String nombre, String idioma, Tipo tipo, long duracion) {
         this.nombre = nombre;
@@ -18,7 +13,6 @@ public class Pelicula {
         this.tipo = tipo;
         this.duracion = duracion;
     }
-    
 
     public String getNombre() {
         return nombre;
@@ -51,7 +45,5 @@ public class Pelicula {
     public void setDuracion(long duracion) {
         this.duracion = duracion;
     }
-
-    
 
 }

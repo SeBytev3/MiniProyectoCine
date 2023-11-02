@@ -1,12 +1,9 @@
 package Entity;
 
 public class Cartelera {
-    
-    
+
     private Horario horario;
-    
     private Sala sala;
-    
     private Pelicula pelicula;
     
     

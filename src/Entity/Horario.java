@@ -4,15 +4,12 @@ public class Horario {
     
     
     private String hora;
-    
     private int dia;
-    
     
     public Horario(String hora, int dia) {
         this.hora = hora;
         this.dia = dia;
     }
-    
 
     public String getHora() {
         return hora;

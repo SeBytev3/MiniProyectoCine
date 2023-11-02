@@ -3,10 +3,7 @@
  *
  * @author Sebastian Espinosa
  */
-import Entity.Pelicula;
-import Entity.Sala;
-import Entity.Silla;
-import Entity.Tipo;
+import Entity.*;
 import Logic.Cine;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
@@ -22,7 +19,7 @@ public class Main {
         boolean control = true;
         
         while (control) {
-            String[] opciones = {"Agregar Sala", "Agregar Pelicula", "Agregar Pelí­cula a Sala", "Mostrar Salas", "Vender Boleto", "Salir"};
+            String[] opciones = {"Agregar Sala", "Agregar Pelicula", "Agregar Película a Sala", "Mostrar Salas", "Vender Boleto", "Salir"};
             int seleccion = JOptionPane.showOptionDialog(
                     null,
                     "Seleccione una opción",
@@ -47,70 +44,82 @@ public class Main {
 
  
 
-                case 1: // Agregar Pelí­cula
-                    String titulo = JOptionPane.showInputDialog("Ingrese el tí­tulo de la pelí­cula:");
-                    String idioma = JOptionPane.showInputDialog("Ingrese idioma de la pelí­cula:");
+                case 1: // Agregar Película
+                    String titulo = JOptionPane.showInputDialog("Ingrese el título de la película:");
+                    String idioma = JOptionPane.showInputDialog("Ingrese idioma de la película:");
                     int tipoPelicula = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el tipo de película:"));
-                    int duracion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la duración de la pelí­cula (en minutos):"));
+                    int duracion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la duración de la película (en minutos):"));
                     Pelicula p1 = new Pelicula(titulo, idioma, new Tipo(tipoPelicula), duracion);
                     cine.getPeliculas().add(p1);
                     break;
                     
                     
-                case 2: // Agregar Pelí­cula a Sala
-                    String numSala = JOptionPane.showInputDialog("Ingrese el número de la sala a la que desea agregar la pelí­cula:");
-                    boolean salaEncontrada = false;
+                case 2: // Agregar Película a Sala
+                    String numSala = JOptionPane.showInputDialog("Ingrese el número de la sala que desea seleccionar:");
+                    Sala sala = null;
                     for (Sala s : cine.getSalas()) {
                         if (s.getNumero().equals(numSala)) {
-                            s.setPelicula(peliculas);
-                            salaEncontrada = true;
-                            JOptionPane.showMessageDialog(null, "Pelicula agregada exitosamente a la sala!");
+                            sala = s;
                             break;
                         }
                     }
-                    if (!salaEncontrada) {
-                        JOptionPane.showMessageDialog(null, "NÃºmero de sala no encontrado.");
+
+                    if (sala != null){
+                        String numPelicula = JOptionPane.showInputDialog(cine.mostrarListapeliculas() + "\n Ingrese el número de la pelicula a la que desea agregar a la sala:");
+                        Pelicula p = cine.obtenerPelicula(Integer.parseInt(numPelicula));
+
+                        StringBuilder mensajeHora =new StringBuilder();
+                        mensajeHora.append("Horario 1: 14:00 hasta las 16:30\n");
+                        mensajeHora.append("Horario 2: 16:30 hasta las 19:00\n");
+                        mensajeHora.append("Horario 3: 19:00 hasta las 21:00\n");
+
+                        String hora = JOptionPane.showInputDialog("Ingrese el numero del horario de la película:\n"+mensajeHora.toString());
+                        int dia = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el numero del dia de la semana :"));
+                        Horario h = new Horario(hora, dia);
+                        Cartelera c = new Cartelera(h, sala, p);
+
+                        cine.addCartelera(c);
+
+                        JOptionPane.showMessageDialog(null, "Pelicula agregada exitosamente a la sala!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Número de sala no encontrado.");
                     }
                     break;
-
- 
 
                 case 3: // Mostrar Salas
-                    StringBuilder infoSalas = new StringBuilder("Salas en " + cine.getNombre() + ":\n\n");
-                    for (Sala s : salas) {
-                        infoSalas.append(s.toString()).append("\n");
-                    }
-                    JOptionPane.showMessageDialog(null, infoSalas.toString());
+                    cine.mostrarCartelera();
+//                    StringBuilder infoSalas = new StringBuilder("Salas en " + cine.getNombre() + ":\n\n");
+//                    for (Sala s : salas) {
+//                        infoSalas.append(s.toString()).append("\n");
+//                    }
+//                    JOptionPane.showMessageDialog(null, infoSalas.toString());
                     break;
-
- 
 
                 case 4: // Vender Boleto
-                    int salaParaBoleto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero de la sala para vender un boleto:"));
-                    Sala salaSeleccionada = null;
-                    for (Sala s : salas) {
-                        if (s.getNumeroSala() == salaParaBoleto) {
-                            salaSeleccionada = s;
-                            break;
-                        }
-                    }
-                    if (salaSeleccionada != null) {
-                        int asientoElegido = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero de asiento que desea:"));
-                        if (salaSeleccionada.verificarAsientoDisponible(asientoElegido)) {
-                            salaSeleccionada.ocuparAsiento(asientoElegido);
-                            Boleto boleto = new Boleto(salaSeleccionada.getPelicula(), salaSeleccionada, asientoElegido);
-                            JOptionPane.showMessageDialog(null, "Boleto vendido exitosamente!\n" + boleto.toString());
-                        } else {
-                            JOptionPane.showMessageDialog(null, "El asiento elegido ya estÃ¡ ocupado o no es vÃ¡lido.");
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "NÃºmero de sala no encontrado.");
-                    }
+//                    int salaParaBoleto = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero de la sala para vender un boleto:"));
+//                    Sala salaSeleccionada = null;
+//                    for (Sala s : salas) {
+//                        if (s.getNumeroSala() == salaParaBoleto) {
+//                            salaSeleccionada = s;
+//                            break;
+//                        }
+//                    }
+//                    if (salaSeleccionada != null) {
+//                        int asientoElegido = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nÃºmero de asiento que desea:"));
+//                        if (salaSeleccionada.verificarAsientoDisponible(asientoElegido)) {
+//                            salaSeleccionada.ocuparAsiento(asientoElegido);
+//                            Boleto boleto = new Boleto(salaSeleccionada.getPelicula(), salaSeleccionada, asientoElegido);
+//                            JOptionPane.showMessageDialog(null, "Boleto vendido exitosamente!\n" + boleto.toString());
+//                        } else {
+//                            JOptionPane.showMessageDialog(null, "El asiento elegido ya estÃ¡ ocupado o no es vÃ¡lido.");
+//                        }
+//                    } else {
+//                        JOptionPane.showMessageDialog(null, "NÃºmero de sala no encontrado.");
+//                    }
                     break;
 
- 
-
                 case 5: // Salir
+                    control = false;
                     return;
             }
         }
