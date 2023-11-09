@@ -3,16 +3,16 @@ package Entity;
 public class Tipo {
     
     private int codigo;
-    
     private String tipo;
-    
-    
+
+    public Tipo() {
+    }
+
     public Tipo(int codigo, String tipo) {
         this.codigo = codigo;
         this.tipo = tipo;
     }
-    
-    
+
     public Tipo(int codigo) {
         this.codigo = codigo;
         if (codigo == 1) {

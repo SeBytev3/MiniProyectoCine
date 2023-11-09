@@ -11,7 +11,6 @@ public class Sala {
         this.numero = numero;
         this.sillas = sillas;
     }
-    
 
     public Tipo getTipo() {
         return tipo;

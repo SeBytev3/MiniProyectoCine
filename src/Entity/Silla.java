@@ -1,19 +1,16 @@
 package Entity;
 
 public class Silla {
-    
-    
+
     private String numero;
-    
     private String letra;
-    
     private long valor;
-    
     private Tipo tipo;
-    
     private boolean disponibilidad;
-    
-    
+
+    public Silla() {
+    }
+
     public Silla(String numero, String letra, long valor, Tipo tipo, boolean disponibilidad) {
         this.numero = numero;
         this.letra = letra;
@@ -21,7 +18,6 @@ public class Silla {
         this.tipo = tipo;
         this.disponibilidad = disponibilidad;
     }
-    
 
     public String getNumero() {
         return numero;
@@ -62,6 +58,5 @@ public class Silla {
     public void setDisponibilidad(boolean disponibilidad) {
         this.disponibilidad = disponibilidad;
     }
-
     
 }

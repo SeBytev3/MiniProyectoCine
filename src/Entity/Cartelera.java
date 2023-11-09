@@ -12,7 +12,6 @@ public class Cartelera {
         this.sala = sala;
         this.pelicula = pelicula;
     }
-    
 
     public Horario getHorario() {
         return horario;
