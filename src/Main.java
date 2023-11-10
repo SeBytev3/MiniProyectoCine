@@ -157,7 +157,7 @@ public class Main {
 
                         int dia = Integer.parseInt(codDia);
                         Cartelera cartelera = cine.mostrarPeliculasDisponibles(dia);
-                        
+                        System.out.println(cartelera.getSala().obtenerSilleteriaComoTexto());
                     }
 
                     break;

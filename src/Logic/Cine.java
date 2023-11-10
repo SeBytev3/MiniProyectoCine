@@ -60,42 +60,40 @@ public class Cine {
         ordenarCartelera();
     }
 
-    public Silla[][] crearSilleteria(int tipoSala){
+    public Silla[][] crearSilleteria(int tipoSala) {
         Silla[][] sillas = new Silla[8][12];
+
         for (int i = 0; i < sillas.length; i++) {
-            Silla silla = new Silla();
-            silla.setDisponibilidad(true);
-            Tipo tipoSilla = new Tipo();
-            silla.setNumero(String.valueOf(i));
-            if (tipoSala == 2) {
-                if (i < 6) {
-                    for (int j = 0; j < sillas[i].length; j++) {
-                            silla.setLetra(Utilidades.obtenerLetra(i));
-                            tipoSilla = new Tipo(3);
-                            silla.setTipo(tipoSilla);
-                            silla.setValor(6000);
-                    }
-                } else if (i > 5) {
-                    for (int j = 0; j < 9; j++) {
-                        silla.setLetra(Utilidades.obtenerLetra(i));
-                        tipoSilla = new Tipo(4);
-                        silla.setTipo(tipoSilla);
-                        silla.setValor(12000);
-                    }
-                }
-            } else if (tipoSala == 2) {
-                if (i < 6) {
-                    for (int j = 0; j < sillas[i].length; j++) {
-                        silla.setLetra(Utilidades.obtenerLetra(i));
-                        tipoSilla = new Tipo(3);
-                        silla.setTipo(tipoSilla);
+            for (int j = 0; j < sillas[i].length; j++) {
+                Silla silla = new Silla();
+                silla.setDisponibilidad(true);
+                silla.setNumero(String.valueOf(i));
+                silla.setLetra(Utilidades.obtenerLetra(i));
+
+                if (tipoSala == 1) { // Sala 3D
+                    if (i < 6) {
+                        silla.setTipo(new Tipo(1)); // Tipo 3D
                         silla.setValor(10000);
                     }
+                } else if (tipoSala == 2) { // Sala 35mm
+                    if (i < 6) {
+                        silla.setTipo(new Tipo(3)); // Tipo GENERAL
+                        silla.setValor(8000);
+                    } else if ((i >= 6 && i < 8) && (j < 9) ) {
+                        silla.setTipo(new Tipo(4)); // Tipo PREFERENCIAL
+                        silla.setValor(12000);
+                    } else if (j > 8) {
+                        silla = null;
+                    }
                 }
+
+                sillas[i][j] = silla;
             }
         }
+
         return sillas;
     }
+
 
     public void ordenarCarteleraPorDia(){
         for (int i = 0; i < carteleras.size(); i++) {
@@ -203,7 +201,9 @@ public class Cine {
                     if (peliculasDiponibles.size() > 0) {
                         for (Cartelera pelicula: peliculasDiponibles) {
                             if (!cartelera.getPelicula().getNombre().equals(cartelera.getPelicula().getNombre())) {
-                                peliculasDiponibles.add(cartelera);
+                                if (cartelera.getPelicula().getTipo().getCodigo() != cartelera.getPelicula().getTipo().getCodigo()) {
+                                    peliculasDiponibles.add(cartelera);
+                                }
                             }
                         }
                     } else {
